@@ -6,6 +6,7 @@ import {
   statelessSessions,
 } from '@keystone-next/keystone/session';
 import { Product } from './schemas/Product';
+import { ProductImage } from './schemas/ProductImage';
 import { User } from './schemas/User';
 
 const databaseURL =
@@ -43,6 +44,7 @@ export default withAuth(
       // Schema items go in here
       User,
       Product,
+      ProductImage,
     }),
     ui: {
       // Show the UI only for people who pass this test
