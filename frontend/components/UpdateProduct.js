@@ -35,21 +35,18 @@ const UPDATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function UpdateProduct({ id }) {
-  // 1. We need to get existing product
   const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: { id },
   });
 
-  // 2. We need to get the mutation to update product
   const [updateProduct, mutationResponse] = useMutation(
     UPDATE_PRODUCT_MUTATION
   );
 
-  //   2.5 Create state for form inputs
   const { inputs, handleChange, clearForm } = useForm(data?.Product);
 
   if (loading) return <p>Loading...</p>;
-  // 3. We need the form to handle the updates
+
   return (
     <Form
       onSubmit={async (e) => {
@@ -63,11 +60,6 @@ export default function UpdateProduct({ id }) {
             price: inputs.price,
           },
         });
-
-        // const resp = await createProduct();
-        // clearForm();
-        // // Go to the product page
-        // Router.push({ pathname: `/product/${resp.data.createProduct.id}` });
       }}
     >
       <DisplayError error={error || mutationResponse.error} />
